@@ -323,13 +323,13 @@ QBCore.Commands.Add('admin', Lang:t("commands.open_admin"), {}, false, function(
     TriggerClientEvent('qb-admin:client:openMenu', source)
 end, 'admin')
 
-QBCore.Commands.Add('report', Lang:t("info.admin_report"), {{name='message', help='Message'}}, true, function(source, args)
-    local src = source
-    local msg = table.concat(args, ' ')
-    local Player = QBCore.Functions.GetPlayer(source)
-    TriggerClientEvent('qb-admin:client:SendReport', -1, GetPlayerName(src), src, msg)
-    TriggerEvent('qb-log:server:CreateLog', 'report', 'Report', 'green', '**'..GetPlayerName(source)..'** (CitizenID: '..Player.PlayerData.citizenid..' | ID: '..source..') **Report:** ' ..msg, false)
-end)
+-- QBCore.Commands.Add('report', Lang:t("info.admin_report"), {{name='message', help='Message'}}, true, function(source, args)
+--     local src = source
+--     local msg = table.concat(args, ' ')
+--     local Player = QBCore.Functions.GetPlayer(source)
+--     TriggerClientEvent('qb-admin:client:SendReport', -1, GetPlayerName(src), src, msg)
+--     TriggerEvent('qb-log:server:CreateLog', 'report', 'Report', 'green', '**'..GetPlayerName(source)..'** (CitizenID: '..Player.PlayerData.citizenid..' | ID: '..source..') **Report:** ' ..msg, false)
+-- end)
 
 QBCore.Commands.Add('staffchat', Lang:t("commands.staffchat_message"), {{name='message', help='Message'}}, true, function(source, args)
     local msg = table.concat(args, ' ')
@@ -404,28 +404,28 @@ QBCore.Commands.Add('delwarn', Lang:t("commands.delete_player_warning"), {{name=
     end
 end, 'admin')
 
-QBCore.Commands.Add('reportr', Lang:t("commands.reply_to_report"), {{name='id', help='Player'}, {name = 'message', help = 'Message to respond with'}}, false, function(source, args)
-    local src = source
-    local playerId = tonumber(args[1])
-    table.remove(args, 1)
-    local msg = table.concat(args, ' ')
-    local OtherPlayer = QBCore.Functions.GetPlayer(playerId)
-    if msg == '' then return end
-    if not OtherPlayer then return TriggerClientEvent('QBCore:Notify', src, 'Player is not online', 'error') end
-    if not QBCore.Functions.HasPermission(src, 'admin') or IsPlayerAceAllowed(src, 'command') ~= 1 then return end
-    TriggerClientEvent('chat:addMessage', playerId, {
-        color = {255, 0, 0},
-        multiline = true,
-        args = {'Admin Response', msg}
-    })
-    TriggerClientEvent('chat:addMessage', src, {
-        color = {255, 0, 0},
-        multiline = true,
-        args = {'Report Response ('..playerId..')', msg}
-    })
-    TriggerClientEvent('QBCore:Notify', src, 'Reply Sent')
-    TriggerEvent('qb-log:server:CreateLog', 'report', 'Report Reply', 'red', '**'..GetPlayerName(src)..'** replied on: **'..OtherPlayer.PlayerData.name.. ' **(ID: '..OtherPlayer.PlayerData.source..') **Message:** ' ..msg, false)
-end, 'admin')
+-- QBCore.Commands.Add('reportr', Lang:t("commands.reply_to_report"), {{name='id', help='Player'}, {name = 'message', help = 'Message to respond with'}}, false, function(source, args)
+--     local src = source
+--     local playerId = tonumber(args[1])
+--     table.remove(args, 1)
+--     local msg = table.concat(args, ' ')
+--     local OtherPlayer = QBCore.Functions.GetPlayer(playerId)
+--     if msg == '' then return end
+--     if not OtherPlayer then return TriggerClientEvent('QBCore:Notify', src, 'Player is not online', 'error') end
+--     if not QBCore.Functions.HasPermission(src, 'admin') or IsPlayerAceAllowed(src, 'command') ~= 1 then return end
+--     TriggerClientEvent('chat:addMessage', playerId, {
+--         color = {255, 0, 0},
+--         multiline = true,
+--         args = {'Admin Response', msg}
+--     })
+--     TriggerClientEvent('chat:addMessage', src, {
+--         color = {255, 0, 0},
+--         multiline = true,
+--         args = {'Report Response ('..playerId..')', msg}
+--     })
+--     TriggerClientEvent('QBCore:Notify', src, 'Reply Sent')
+--     TriggerEvent('qb-log:server:CreateLog', 'report', 'Report Reply', 'red', '**'..GetPlayerName(src)..'** replied on: **'..OtherPlayer.PlayerData.name.. ' **(ID: '..OtherPlayer.PlayerData.source..') **Message:** ' ..msg, false)
+-- end, 'admin')
 
 QBCore.Commands.Add('setmodel', Lang:t("commands.change_ped_model"), {{name='model', help='Name of the model'}, {name='id', help='Id of the Player (empty for yourself)'}}, false, function(source, args)
     local model = args[1]
@@ -455,15 +455,15 @@ QBCore.Commands.Add('setspeed', Lang:t("commands.set_player_foot_speed"), {}, fa
     end
 end, 'admin')
 
-QBCore.Commands.Add('reporttoggle', Lang:t("commands.report_toggle"), {}, false, function(source, _)
-    local src = source
-    QBCore.Functions.ToggleOptin(src)
-    if QBCore.Functions.IsOptin(src) then
-        TriggerClientEvent('QBCore:Notify', src, Lang:t("success.receive_reports"), 'success')
-    else
-        TriggerClientEvent('QBCore:Notify', src, Lang:t("error.no_receive_report"), 'error')
-    end
-end, 'admin')
+-- QBCore.Commands.Add('reporttoggle', Lang:t("commands.report_toggle"), {}, false, function(source, _)
+--     local src = source
+--     QBCore.Functions.ToggleOptin(src)
+--     if QBCore.Functions.IsOptin(src) then
+--         TriggerClientEvent('QBCore:Notify', src, Lang:t("success.receive_reports"), 'success')
+--     else
+--         TriggerClientEvent('QBCore:Notify', src, Lang:t("error.no_receive_report"), 'error')
+--     end
+-- end, 'admin')
 
 QBCore.Commands.Add('kickall', Lang:t("commands.kick_all"), {}, false, function(source, args)
     local src = source
